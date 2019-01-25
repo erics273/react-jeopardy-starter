@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { JeopardyService } from "./services/JeopardyService";
-import GameBoard from "./components/GameBoard";
 import './App.css';
 
 class App extends Component {
@@ -35,11 +34,11 @@ class App extends Component {
     const userAnswer = event.target.answer.value
     if(userAnswer === this.state.data.answer){
       this.setState({
-        score: this.state.score += this.state.data.value
+        score: this.state.score + this.state.data.value
       })
     }else{
       this.setState({
-        score: this.state.score -= this.state.data.value
+        score: this.state.score - this.state.data.value
       })
     }
     this.getNewQuestion();
@@ -50,7 +49,13 @@ class App extends Component {
 
     return (
       <div>
-        <GameBoard scoreGame={this.checkAnswer} data={this.state.data} score={this.state.score}/>
+        Question: {this.state.data.question} <br/>
+        Category: {this.state.data.category.title}<br/>
+        Point Value: {this.state.data.value}<br/>
+        score: {this.state.score}<br/>
+        <form onSubmit={this.checkAnswer}>
+          <input name="answer" type="text" /><button>submit</button>
+        </form>
       </div>
     );
   }
