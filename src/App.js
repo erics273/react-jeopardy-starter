@@ -4,8 +4,6 @@ import './App.css';
 
 class App extends Component {
 
-  client;
-
   constructor(props){
     super(props);
     this.client = new JeopardyService();
@@ -33,16 +31,16 @@ class App extends Component {
 
     const userAnswer = event.target.answer.value
     if(userAnswer === this.state.data.answer){
-      this.setState({
-        score: this.state.score + this.state.data.value
-      })
+      this.setState((state, props) => ({
+        score: state.score + state.data.value
+      }));
     }else{
-      this.setState({
-        score: this.state.score - this.state.data.value
-      })
+      this.setState((state, props) => ({
+        score: state.score - state.data.value
+      }));
     }
     this.getNewQuestion();
-    event.target.answer.value = "";
+    event.target.reset();
   }
 
   render() {
