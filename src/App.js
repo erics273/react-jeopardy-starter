@@ -4,8 +4,6 @@ import './App.css';
 
 class App extends Component {
 
-  client;
-
   constructor(props){
     super(props);
     this.client = new JeopardyService();
@@ -15,7 +13,7 @@ class App extends Component {
     }
   }
 
-  getNewQuestion = () => {
+  getNewQuestion() {
     return this.client.getQuestion().then(result => {
       this.setState({
         question: result.data[0]
@@ -23,7 +21,7 @@ class App extends Component {
     })
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.getNewQuestion();
   }
 
