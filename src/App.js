@@ -45,16 +45,22 @@ class App extends Component {
 
   render() {
 
+    function GameBoard(props){
+        return (
+          <div>
+            Question: {props.data.question} <br/>
+            Category: {props.data.category.title}<br/>
+            Point Value: {props.data.value}<br/>
+            score: {props.score}<br/>
+            <form onSubmit={props.eventHandler}>
+              <input name="answer" type="text" /><button>submit</button>
+            </form>
+          </div>
+        )
+    }
+
     return (
-      <div>
-        Question: {this.state.data.question} <br/>
-        Category: {this.state.data.category.title}<br/>
-        Point Value: {this.state.data.value}<br/>
-        score: {this.state.score}<br/>
-        <form onSubmit={this.checkAnswer}>
-          <input name="answer" type="text" /><button>submit</button>
-        </form>
-      </div>
+     <GameBoard data={this.state.data} score={this.state.score} eventHandler={this.checkAnswer} />
     );
   }
 }
